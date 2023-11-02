@@ -8,7 +8,7 @@ from time import sleep
 
 # create handler for each connection
 
-image_path = "./resources/images/cooker.jpg"
+image_path = "./resources/images/human_pic.jpg"
 camera_module = Camera()
 async def handler(websocket, path):
 
