@@ -1,0 +1,5 @@
+pyserial
+flask
+fastai
+opencv-python
+

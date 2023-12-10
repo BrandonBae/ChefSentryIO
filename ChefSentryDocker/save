@@ -1,0 +1,37 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim-bullseye
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install
+#RUN apt update
+#RUN apt full-upgrade -y
+#RUN apt install -y python3-picamera2 --no-install-recommends
+
+# Keeps Python from Generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
+# Update pip
+RUN pip install --upgrade pip
+
+
+
+# Install Flask and other Python Dependencies
+RUN pip install -r ./requirements.txt
+
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
+
+# Define environment variable
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+# Run app.py when the container launches
+CMD ["python", "-u", "-m", "flask", "run", "--host=0.0.0.0", "--port=8080"]
